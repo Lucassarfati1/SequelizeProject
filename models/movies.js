@@ -32,7 +32,19 @@ module.exports = (sequelize, DataTypes) => {
     length: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    rating:  {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+    release_date: {
+        type: DataTypes.DATE
+
+    },
+    awards:{
+        type: DataTypes.INTEGER
     }
+
     },
     {
     tableName: 'Movies',
