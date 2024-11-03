@@ -45,6 +45,20 @@ const moviesController = {
         });
 
         
+    },
+
+    createBulkMovies: (req,res) => {
+
+        const movies = req.body;
+
+        db.Movies.bulkCreate(movies)
+        .then(peliculasInsertadas => {
+        console.log(peliculasInsertadas);
+        res.status(201).json(peliculasInsertadas);
+    })
+    .catch(error => {
+        console.error('Error al insertar las películas:', error);
+    });
     }
 
 }

@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 },
     {
-    tableName: 'User',
+    tableName: 'users',
     //Si el nombre de la tabla no coincide con el del modelo
     timestamps: false,
     //Si no tengo timestamps

@@ -38,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
     },
     release_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: true
 
     },
     awards:{

@@ -6,6 +6,7 @@ router.get('/movies', moviesController.list);
 router.get('/movies/new', moviesController.new);
 router.get('/movies/recommended', moviesController.recomended);
 router.get('/movies/detail/:id', moviesController.detail);
+router.post('/movies/new', moviesController.createBulkMovies);
 
 
 module.exports = router;
