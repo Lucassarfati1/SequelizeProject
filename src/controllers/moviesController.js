@@ -58,6 +58,7 @@ const moviesController = {
     })
     .catch(error => {
         console.error('Error al insertar las películas:', error);
+        res.status(500).json({ error: 'Error al insertar las películas' });
     });
     }
 
