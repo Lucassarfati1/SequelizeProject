@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Genres = sequelize.define("Genres",
+    const Actor = sequelize.define("Actor",
     {
     // Configuraciones de las columnas.
     id: {
@@ -11,16 +11,26 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING
     },
-    ranking: {
-        type: DataTypes.INTEGER
-    }
+
     },
+
     {
-    tableName: 'Genres',
+    tableName: 'Actors',
     //Si el nombre de la tabla no coincide con el del modelo
     timestamps: false,
     //Si no tengo timestamps
     });
    
-    return Genres;
+    Actor.associate = function (models){
+        Actor.belongsToMany(models.Movie,{
+            as:'movies',
+            through: 'actorMovie',
+            foreignKey: 'actor_id',
+            otherKey: 'movie_id',
+            timestamps: false
+        });
+    };
+
+
+    return Actor;
     }

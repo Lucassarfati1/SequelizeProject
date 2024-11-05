@@ -4,8 +4,8 @@ const db = require('../../models/index');
 const moviesController = {
     list: (req,res) => {
 
-        db.Movies.findAll().then(function(movies){
-            res.render('moviesList', {movies:movies});
+        db.Movies.findAll().then(function(movie){
+            res.render('moviesList', {movie:movie});
         }).catch(err => {
             console.error('Error al obtener las películas:', err);
             res.status(500).send('Error al obtener las películas');
@@ -27,8 +27,8 @@ const moviesController = {
     new: (req,res) => {
         db.Movies.findAll({
             limit: 5
-          }).then(movies => {
-            res.render('newestMovies', {movies:movies});
+          }).then(movie => {
+            res.render('newestMovies', {movie:movie});
           }).catch(error => {
             console.error('Error:', error);
           });
@@ -37,8 +37,8 @@ const moviesController = {
         db.Movies.findAll({
             order: [['release_date', 'DESC']], // Ordenar por fecha de lanzamiento en orden descendente
             limit: 5 // Limitar a las 5 últimas películas
-        }).then(movies => {
-            res.render('recommendedMovies', { movies: movies });
+        }).then(movie => {
+            res.render('recommendedMovies', { movie: movie });
         }).catch(error => {
             console.error('Error', error);
             res.status(500).send('Error al obtener las películas recomendadas');
