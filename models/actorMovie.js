@@ -1,20 +1,20 @@
-const { Sequelize } = require(".");
+
 
 module.exports = (sequelize, DataTypes) => {
-    const actorMovie = sequelize.define("actorMovie",
+    const ActorMovie = sequelize.define("ActorMovie",
     {
     // Configuraciones de las columnas.
     movie_id: {
         type: DataTypes.INTEGER,
         references: {
-            model:'Movie',
+            model:'Movies',
              key: 'id'
         }
     },
     actor_id: {
         type: DataTypes.INTEGER,
         references: {
-            model:'Actor',
+            model:'Actors',
              key: 'id'
         }
     },
@@ -27,10 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     //Si no tengo timestamps
     });
-    actorMovie.associate = function(models) {
-   actorMovie.belongsTo(models.Movie, { foreignKey: 'movie_id' });
-    actorMovie.belongsTo(models.Actor, { foreignKey: 'actor_id' });
+    ActorMovie.associate = function(models) {
+   ActorMovie.belongsTo(models.Movies, { foreignKey: 'movie_id' });
+    ActorMovie.belongsTo(models.Actors, { foreignKey: 'actor_id' });
     };
 
-    return actorMovie;
+    return ActorMovie;
     }

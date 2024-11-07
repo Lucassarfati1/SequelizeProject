@@ -1,5 +1,6 @@
+
 module.exports = (sequelize, DataTypes) => {
-    const Movie = sequelize.define("Movie",
+    const Movie = sequelize.define("Movies",
     {
     // Configuraciones de las columnas.
     id: {
@@ -60,13 +61,13 @@ module.exports = (sequelize, DataTypes) => {
    
     
     Movie.associate = function (models){
-        Movie.belongsTo(models.Genre, {
+        Movie.belongsTo(models.Genres, {
             as: 'genre',
             foreignKey:'genre_id'
         });
-        Movie.belongsToMany(models.Actor,{
+        Movie.belongsToMany(models.Actors,{
             as:'actors',
-            through: 'actorMovie',
+            through: 'ActorMovie',
             foreignKey: 'movie_id',
             otherKey: 'actor_id',
             timestamps: false

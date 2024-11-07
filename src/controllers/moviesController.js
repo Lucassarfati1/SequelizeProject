@@ -1,3 +1,4 @@
+const { Association } = require('sequelize');
 const db = require('../../models/index');
 
 
@@ -60,6 +61,28 @@ const moviesController = {
         console.error('Error al insertar las películas:', error);
         res.status(500).json({ error: 'Error al insertar las películas' });
     });
+    },
+    listMoviesGenres: (req,res) => {
+        db.Movies.findByPk(1,{ include: ['genre'] })
+    .then((pelicula) => {
+        console.log(pelicula.genre);
+    })
+    .catch(error => console.log(error));
+    },
+    listMoviesGenresAll: (req,res) => {
+        db.Movies.findAll({ include: 
+            [{
+                model: db.Genres,  // Usa directamente el modelo 'Genres'
+                as: 'genre'        // Asegúrate de que el alias coincida
+              }]
+        }).
+        then((peliculas) => {
+            peliculas.forEach(pelicula => {  // Usa 'forEach' para iterar sobre el array
+                // Asegúrate de acceder a 'pelicula.genre.name' para obtener el nombre del género
+                console.log(`Título: ${pelicula.title}, Género: ${pelicula.genre ? pelicula.genre.name : 'No genre assigned'}`);
+            });
+        })
+        .catch(error => console.log(error));
     }
 
 }

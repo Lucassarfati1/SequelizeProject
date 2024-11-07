@@ -1,5 +1,6 @@
+
 module.exports = (sequelize, DataTypes) => {
-    const Actor = sequelize.define("Actor",
+    const Actor = sequelize.define("Actors",
     {
     // Configuraciones de las columnas.
     id: {
@@ -22,9 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     });
    
     Actor.associate = function (models){
-        Actor.belongsToMany(models.Movie,{
+        Actor.belongsToMany(models.Movies,{
             as:'movies',
-            through: 'actorMovie',
+            through: 'ActorMovie',
             foreignKey: 'actor_id',
             otherKey: 'movie_id',
             timestamps: false
